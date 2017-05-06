@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FlowersApp.Pages.FlowersPage"
+             Title="Flowers"
+           BindingContext="{Binding Main, Source={StaticResource Locator}}"  >
+    <!--el binding context es para especificar cual es el manin viwe model que va a usar, osea
+    quien es que le va a probeer toda la informacion-->
+
+
+    <!-- el binding debe ser a una observable coleccion-->
+    <ListView
+        ItemTemplate="{StaticResource FlowersDataTemplate}"
+    ItemsSource="{Binding Flowers}"         
+    HasUnevenRows="True"
+        IsPullToRefreshEnabled="True"
+        RefreshCommand="{Binding RefreshFlowerCommand}"
+        IsRefreshing="{Binding IsRefreshing,Mode=TwoWay}">
+
+    </ListView>
+    <!--AddFlowerCommand una propiedad en la manin viwe model-->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ic_action_add_circle.png" Command="{Binding AddFlowerCommand}" >
+
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+</ContentPage>
